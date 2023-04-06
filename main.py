@@ -1,16 +1,32 @@
-# This is a sample Python script.
+# Lab Professor: Michael
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+from data import Data
 
+print("\n----------Welcome to our online store !----------\n")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+while True:
 
+    menu = input("1 - View product\n2 - Purchase item\n3 - Remove item from cart\n4 - Exit\n")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    while int(menu) < 1 or int(menu) > 4:
+        print("\nThat is not a valid option in the system, please try again\n")
+        menu = input("1 - View product\n2 - Purchase item\n3 - Remove item from cart\n4 - Exit\n")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    if int(menu) == 1:
+        test = Data()
+        print("\n********** PRODUCTS LISTS **********\n")
+        for item in range(len(test.createData())):
+            print(f"ID: {test.createData()[item][0]}")
+            print(f"PRODUCT NAME: {test.createData()[item][1]}")
+            print(f"PRICE: {test.createData()[item][2]}")
+            print(f"CATEGORY: {test.createData()[item][3]}\n")
+
+    if int(menu) == 2:
+        print("2 works")
+
+    if int(menu) == 3:
+        print("3 works")
+
+    if int(menu) == 4:
+        print("\nEnding the system...good bye")
+        exit()

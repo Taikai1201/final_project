@@ -165,7 +165,7 @@ class OnlineStore:
     # ask the user to enter the id of the product that they want to remove from the cart
     def remove_item(self):
         # display if the cart is empty
-        if len(self.cart_list) == 0:
+        if len(self.store.createData()) == 0:
             print("\nThere is no item in the cart yet !\n")
             back = input("\nPress any button to go back to menu")
             if back:
@@ -178,10 +178,10 @@ class OnlineStore:
                 print("Items on your cart:\n")
 
                 # shows all the current list of the product that is in the cart
-                for item in range(len(self.cart_list)):
-                    print(f"PRODUCT ID: {self.cart_list[item][0]}")
-                    print(f"PRODUCT NAME: {self.cart_list[item][1]}")
-                    print(f"QUANTITY: {self.cart_list[item][2]}\n")
+                for item in range(len(self.store.createData())):
+                    print(f"PRODUCT ID: {self.store.createData()[item][0]}")
+                    print(f"PRODUCT NAME: {self.store.createData()[item][1]}")
+                    print(f"QUANTITY: {self.store.createData()[item][2]}\n")
 
                 remove = input("Please enter the ID of the product the you would like to remove from the cart")
 
@@ -190,15 +190,16 @@ class OnlineStore:
                     remove = input("\nPlease enter the ID of the product the you would like to remove from the cart")
 
                 # search through the cart list to see if entered product id exists or not
-                for item in range(len(self.cart_list)):
-                    if int(remove) == int(self.cart_list[item][0]):
+                for item in range(len(self.store.createData())):
+                    if int(remove) == int(self.store.createData()[item][0]):
                         status = "found"
-                        id = self.cart_list[item][0]
+                        id = self.store.createData()[item][0]
                         loc = int(item)
                         break
-                    elif not int(remove) == int(self.cart_list[item][0]):
+                    elif not int(remove) == int(self.store.createData()[item][0]):
                         status = "unavailable"
                         continue
+
                 # if the entered id matches, ask user for confirmation and remove item from the cart list
                 if status == "found":
                     confirm = input(
@@ -212,9 +213,9 @@ class OnlineStore:
                             f"\nWould you like to confirm to remove product ID: '{id}' from your cart?\nPress Y/y to "
                             f"proceed || N/n to go back to menu")
 
+                    # remove item from cart
                     if confirm == "y" or confirm == "Y":
-                        # remove item from cart
-                        self.cart_list.pop(loc)
+                        self.store.createData().pop(loc)
                         print(f"\nItem ID: {id} has been removed from your cart!")
                         back = input("\nPress any button to go back to menu")
                         break
